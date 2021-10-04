@@ -12,7 +12,7 @@ public class BaseBallGameController {
      */
     public static void play() {
 
-        // TODO 투수가 던질 투구 번호를 고릅니다.
+        // 투수가 던질 투구 번호를 고릅니다.
         final BaseBall baseBall = Pitcher.pickBaseBall();
 
         // TODO 플레이어가 투수가 던진 투구를 스윙 합니다.

@@ -162,5 +162,14 @@ public class BaseBall {
                 '}';
     }
 
+    /**
+     * 현재 투구번호의 크기를 반환
+     */
+    public int length() {
+        return this.baseball.length;
+    }
 
+    public int getAt(int i) {
+        return this.baseball[i];
+    }
 }

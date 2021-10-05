@@ -5,7 +5,7 @@ import baseball.model.SwingResult;
 public class BaseBallGameView {
 
     /**
-     * TODO 스윙 결과 메시지를 콘솔에 출력합니다.
+     * 스윙 결과 메시지를 콘솔에 출력합니다.
      */
     public void printSwingResult(final SwingResult swingResult) {
         final StringBuilder resultMessage = new StringBuilder();
@@ -30,7 +30,7 @@ public class BaseBallGameView {
     }
 
     /**
-     * TODO 게임의 끝 인사를 콘솔에 출력합니다.
+     * 게임의 끝 인사를 콘솔에 출력합니다.
      */
     public void printEndMessage() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");

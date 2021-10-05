@@ -18,16 +18,16 @@ public class Player {
     /**
      * 콘솔로 부터 숫자를 입력받아 게임을 다시 시작할지 결정합니다.
      *
-     * @param isReplyFromConsoleInput 콘솔로 부터 입력받은 재시작 여부를 나타내는 텍스트
+     * @param replyOrNotInputValue 콘솔로 부터 입력받은 재시작 여부를 나타내는 텍스트
      * @return 재시작이면 true 아니면 false
      */
-    public boolean isReply(final String isReplyFromConsoleInput) {
+    public boolean isReply(final String replyOrNotInputValue) {
 
-        if (isReplyFromConsoleInput.equals("1")) {
+        if (GameReplyStatus.isReply(replyOrNotInputValue)) {
             return true;
         }
 
-        if (isReplyFromConsoleInput.equals("2")) {
+        if (GameReplyStatus.isNotReply(replyOrNotInputValue)) {
             return false;
         }
 

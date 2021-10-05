@@ -7,14 +7,14 @@ package baseball.model.exception;
  */
 public class IllegalReplyInputValueException extends Exception {
 
-    private final String message;
+	private final String message;
 
-    public IllegalReplyInputValueException(String message) {
-        this.message = message;
-    }
+	public IllegalReplyInputValueException(String message) {
+		this.message = message;
+	}
 
-    @Override
-    public String getMessage() {
-        return message;
-    }
+	@Override
+	public String getMessage() {
+		return message;
+	}
 }

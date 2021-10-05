@@ -37,7 +37,7 @@ public class SwingResult {
      * 전부 스트라이크 이면 True 를 반환합니다.
      */
     public boolean isFullStrike() {
-        return this.strikeCount == BaseBallConstants.MAX_SIZE;
+        return this.strikeCount == BaseBallConstants.SIZE;
     }
 
     /**

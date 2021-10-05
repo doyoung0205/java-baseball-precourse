@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class BaseBall {
 
-    private final static String regex = "^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.MAX_SIZE + "}$";
+    private final static String regex = "^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.SIZE + "}$";
     private final int[] baseball;
 
     private BaseBall(final int[] baseball) {
@@ -65,7 +65,7 @@ public class BaseBall {
     private static void validation(final String s) {
 
         if (!s.matches(regex)) {
-            final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.MAX_SIZE, s);
+            final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.SIZE, s);
             throw new IllegalArgumentException(errorMsg);
         }
 
@@ -73,7 +73,7 @@ public class BaseBall {
         for (int i = 0; i < s.length(); i++) {
             numberSet.add(Character.getNumericValue(s.charAt(i)));
         }
-        if (numberSet.size() != BaseBallConstants.MAX_SIZE) {
+        if (numberSet.size() != BaseBallConstants.SIZE) {
             throw new IllegalArgumentException(String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", s));
         }
 
@@ -87,7 +87,7 @@ public class BaseBall {
      */
     private static int[] makeNewBaseBall() {
 
-        final int[] baseBall = new int[BaseBallConstants.MAX_SIZE];
+        final int[] baseBall = new int[BaseBallConstants.SIZE];
 
         int index = 0;
         while (baseBall[baseBall.length - 1] == 0) {

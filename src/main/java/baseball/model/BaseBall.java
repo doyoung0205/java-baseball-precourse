@@ -10,7 +10,8 @@ import nextstep.utils.Randoms;
 public class BaseBall {
 
 	private static final String FORMATION_REGEX =
-			"^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.SIZE + "}$";
+			"^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]"
+					+ "{" + BaseBallConstants.SIZE + "}$";
 	private final int[] baseball;
 
 	private BaseBall(final int[] baseball) {

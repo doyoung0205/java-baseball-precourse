@@ -3,10 +3,13 @@ package baseball.model;
 import nextstep.utils.Randoms;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BaseBall {
 
-    private int[] baseball;
+    private final static String regex = "^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.MAX_SIZE + "}$";
+    private final int[] baseball;
 
     private BaseBall(int[] baseball) {
         this.baseball = baseball;
@@ -20,6 +23,60 @@ public class BaseBall {
     public static BaseBall getInstance() {
         final int[] baseBall = makeNewBaseBall();
         return new BaseBall(baseBall);
+    }
+
+
+    /**
+     * 문자열을 변환해 투구번호 생성합니다.
+     *
+     * @param s 문자열
+     * @return {@link BaseBall}
+     * @throws IllegalArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
+     */
+    public static BaseBall valueOf(String s) {
+
+        validation(s);
+
+        final int[] digits = new int[s.length()];
+
+        for (int i = 0; i < s.length(); i++) {
+            digits[i] = Character.getNumericValue(s.charAt(i));
+        }
+
+        return new BaseBall(digits);
+    }
+
+    /**
+     * 투구번호 배열에서 <code>number</code>가 있는지 확인합니다.
+     *
+     * @param number 확인하고자 하는 숫자
+     * @return {@link BaseBall#containsRecursive(int[], int, int, int)}
+     */
+    public int indexOf(final int number) {
+        return containsRecursive(this.baseball, number, 0, this.baseball.length - 1);
+    }
+
+    /**
+     * 1~9 로 구성된 서로 다른 임의의 숫자 3개가 있는지 확인
+     *
+     * @param s 문자열
+     * @throws IllegalArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
+     */
+    private static void validation(final String s) {
+
+        if (!s.matches(regex)) {
+            final String errorMsg = String.format("[ERROR] %s에서 %s까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.MAX_SIZE, s);
+            throw new IllegalArgumentException(errorMsg);
+        }
+
+        final Set<Integer> numberSet = new HashSet<>();
+        for (int i = 0; i < s.length(); i++) {
+            numberSet.add(Character.getNumericValue(s.charAt(i)));
+        }
+        if (numberSet.size() != BaseBallConstants.MAX_SIZE) {
+            throw new IllegalArgumentException(String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", s));
+        }
+
     }
 
     /**
@@ -69,7 +126,7 @@ public class BaseBall {
      * @param baseBall 투구번호가 들어가 있는 int 배열
      * @param number   확인하고자 하는 숫자
      * @param range    확인하고자 하는 배열의 범위
-     * @return {@link BaseBall#containsRecursive(int[], int, int, int)}
+     * @return {Boolean} 있으면 True 없으면 false
      */
     private static boolean contains(final int[] baseBall, final int number, final int range) {
         return containsRecursive(baseBall, number, 0, range) > -1;
@@ -104,4 +161,6 @@ public class BaseBall {
                 "baseball=" + Arrays.toString(baseball) +
                 '}';
     }
+
+
 }

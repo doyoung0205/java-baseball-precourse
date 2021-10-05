@@ -3,13 +3,13 @@ package baseball.model;
 public class Player {
 
     /**
-     * 콘솔로 부터 숫자를 입력받아 스윙을 하여 스윙 결과를 반환합니다.
+     * 텍스트를 예상 투구번호로 변환하여 투수의 베이스볼과 비교하여 스윙 결과를 반환합니다.
      *
      * @return 스윙 결과
      */
-    public SwingResult swingByBaseBall(final BaseBall baseBall, final String text) {
+    public SwingResult swingByBaseBallAndExpectedText(final BaseBall baseBall, final String expectedText) {
 
-        final BaseBall expectedBaseBall = getExpectedBaseBallByExpectedText(text);
+        final BaseBall expectedBaseBall = getExpectedBaseBallByExpectedText(expectedText);
 
         return SwingResult.valueOf(baseBall, expectedBaseBall);
     }
@@ -37,6 +37,7 @@ public class Player {
 
     /**
      * 스윙을 할 수 있다면 True 없다면 False 를 반환합니다.
+     *
      * @param swingResult 스윙 결과
      * @return 스윙결과가 모두 스트라이크가 아니거나 스윙결과가 없으면 True 를 반환 아니면 False 반환
      */

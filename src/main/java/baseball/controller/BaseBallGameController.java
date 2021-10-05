@@ -42,6 +42,9 @@ public class BaseBallGameController {
 
 
     /**
+     * 콘솔로 부터 예상 번호를 입력받아 플페이어가 스윙을 하여 결과를 조회합니다.
+     * 스윙 결과가 전부 스트라이크일 경우가 아니라면 계속 플레이어가 스윙을 합니다.
+     *
      * @param baseBall 투구번호
      */
     private void swingByBaseBall(final BaseBall baseBall) {
@@ -53,7 +56,7 @@ public class BaseBallGameController {
 
             final String expectedText = consoleView.getExpectedNumberInputValue();
 
-            swingResult = player.swingByBaseBall(baseBall, expectedText);
+            swingResult = player.swingByBaseBallAndExpectedText(baseBall, expectedText);
 
             swingResultView.resolve(swingResult);
         }
@@ -74,7 +77,6 @@ public class BaseBallGameController {
 
         return isReply();
     }
-
 
 
 }

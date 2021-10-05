@@ -10,10 +10,8 @@ public class Player {
      *
      * @return 스윙 결과
      */
-    public SwingResult swingByBaseBallAndExpectedText(final BaseBall baseBall, final String expectedText) {
-
+    public SwingResult swingByBaseBallAndExpectedText(final BaseBall baseBall, final String expectedText) throws IllegalBaseBallArgumentException {
         final BaseBall expectedBaseBall = getExpectedBaseBallByExpectedText(expectedText);
-
         return SwingResult.valueOf(baseBall, expectedBaseBall);
     }
 
@@ -26,7 +24,6 @@ public class Player {
      * @throws IllegalReplyInputValueException 잘못된 재시작 입력 값일 경우 발생합니다.
      */
     public boolean isReply(final String replyOrNotInputValue) throws IllegalReplyInputValueException {
-
         if (GameReplyStatus.isReply(replyOrNotInputValue)) {
             return true;
         }
@@ -52,14 +49,7 @@ public class Player {
     /**
      * 콘솔로 부터 입력받은 값으로 예상 투구번호를 반환합니다.
      */
-    private BaseBall getExpectedBaseBallByExpectedText(final String expectedText) {
-
-        try {
-            return BaseBall.valueOf(expectedText);
-        } catch (IllegalBaseBallArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return getExpectedBaseBallByExpectedText(expectedText);
+    private BaseBall getExpectedBaseBallByExpectedText(final String expectedText) throws IllegalBaseBallArgumentException {
+        return BaseBall.valueOf(expectedText);
     }
 }

@@ -11,7 +11,7 @@ public class BaseBall {
     private final static String regex = "^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.MAX_SIZE + "}$";
     private final int[] baseball;
 
-    private BaseBall(int[] baseball) {
+    private BaseBall(final int[] baseball) {
         this.baseball = baseball;
     }
 
@@ -33,7 +33,7 @@ public class BaseBall {
      * @return {@link BaseBall}
      * @throws IllegalArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
      */
-    public static BaseBall valueOf(String s) {
+    public static BaseBall valueOf(final String s) {
 
         validation(s);
 
@@ -65,7 +65,7 @@ public class BaseBall {
     private static void validation(final String s) {
 
         if (!s.matches(regex)) {
-            final String errorMsg = String.format("[ERROR] %s에서 %s까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.MAX_SIZE, s);
+            final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.MAX_SIZE, s);
             throw new IllegalArgumentException(errorMsg);
         }
 
@@ -169,7 +169,10 @@ public class BaseBall {
         return this.baseball.length;
     }
 
-    public int getAt(int i) {
+    /**
+     * 투구번호에서 <code>i</code> 인덱스의 가지고 있는 값을 반환합니다.
+     */
+    public int getAt(final int i) {
         return this.baseball[i];
     }
 }

@@ -7,7 +7,7 @@ public class Pitcher {
      *
      * @return {@link BaseBall#getInstance()}
      */
-    public static BaseBall pickBaseBall() {
+    public BaseBall pickBaseBall() {
         return BaseBall.getInstance();
     }
 }

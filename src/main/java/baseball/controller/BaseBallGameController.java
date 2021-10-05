@@ -53,6 +53,11 @@ public class BaseBallGameController {
      * 플레이어가 게임을 다시 시작할지 결정합니다.
      */
     public boolean isReply() {
-        return player.isReply();
+        try {
+            return player.isReply();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return isReply();
     }
 }

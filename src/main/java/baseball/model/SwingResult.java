@@ -27,7 +27,6 @@ public class SwingResult {
 			strikeCount = countUpIfStrike(baseBall, expectedNumber, i, strikeCount);
 			ballCount = countUpIfBall(baseBall, expectedNumber, i, ballCount);
 		}
-
 		return new SwingResult(ballCount, strikeCount);
 	}
 
@@ -49,7 +48,6 @@ public class SwingResult {
 		if (baseBall == null) {
 			throw new IllegalArgumentException("baseBall 이 무조건 존재해야 합니다.");
 		}
-
 		if (expectedBaseBall == null) {
 			throw new IllegalArgumentException("expectedBaseBall 이 무조건 존재해야 합니다.");
 		}
@@ -67,12 +65,10 @@ public class SwingResult {
 	 */
 	private static int countUpIfBall(
 			final BaseBall baseBall, final int expectedNumber, final int bIndex, final int ballCount) {
-
 		final int index = baseBall.indexOf(expectedNumber);
 		if (index != bIndex && index > -1) {
 			return ballCount + 1;
 		}
-
 		return ballCount;
 	}
 
@@ -88,12 +84,10 @@ public class SwingResult {
 	 */
 	private static int countUpIfStrike(
 			final BaseBall baseBall, final int expectedNumber, final int bIndex, final int strikeCount) {
-
 		final int index = baseBall.indexOf(expectedNumber);
 		if (index == bIndex && index > -1) {
 			return strikeCount + 1;
 		}
-
 		return strikeCount;
 	}
 

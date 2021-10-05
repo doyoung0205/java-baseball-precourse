@@ -9,23 +9,18 @@ public class SwingResultView {
 	 */
 	public void resolve(final SwingResult swingResult) {
 		final StringBuilder resultMessage = new StringBuilder();
-
 		final int strikeCount = swingResult.getStrikeCount();
 		final int ballCount = swingResult.getBallCount();
-
 		if (ballCount == 0 && strikeCount == 0) {
 			System.out.println("낫싱");
 			return;
 		}
-
 		if (strikeCount > 0) {
 			resultMessage.append(strikeCount).append("스트라이크 ");
 		}
-
 		if (ballCount > 0) {
 			resultMessage.append(ballCount).append("볼");
 		}
-
 		System.out.println(resultMessage);
 	}
 

@@ -45,7 +45,6 @@ public class BaseBallGameController {
 	 */
 	private void swingByBaseBall(final BaseBall baseBall) {
 		SwingResult swingResult = null;
-
 		// 플레이어가 스윙을 할 수 있는지 확인 후 할 수 있을 때 까지 스윙
 		while (player.isSwingAble(swingResult)) {
 			swingResult = swingByBaseBallRecursive(baseBall);
@@ -62,7 +61,6 @@ public class BaseBallGameController {
 		} catch (final IllegalReplyInputValueException exception) {
 			System.out.println(exception.getMessage());
 		}
-
 		return isReply();
 	}
 
@@ -81,7 +79,6 @@ public class BaseBallGameController {
 		} catch (final IllegalBaseBallArgumentException exception) {
 			System.out.println(exception.getMessage());
 		}
-
 		return swingByBaseBallRecursive(baseBall);
 	}
 

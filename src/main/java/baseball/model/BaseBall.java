@@ -10,7 +10,7 @@ import nextstep.utils.Randoms;
 public class BaseBall {
 
 	private static final String FORMATION_REGEX =
-		"^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.SIZE + "}$";
+			"^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.SIZE + "}$";
 	private final int[] baseball;
 
 	private BaseBall(final int[] baseball) {
@@ -40,7 +40,6 @@ public class BaseBall {
 		for (int i = 0; i < textBaseBall.length(); i++) {
 			digits[i] = Character.getNumericValue(textBaseBall.charAt(i));
 		}
-
 		return new BaseBall(digits);
 	}
 
@@ -93,7 +92,7 @@ public class BaseBall {
 	private static void validateFormation(final String textBaseBall) throws IllegalBaseBallArgumentException {
 		if (!textBaseBall.matches(FORMATION_REGEX)) {
 			final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]",
-				BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.SIZE, textBaseBall);
+					BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.SIZE, textBaseBall);
 			throw new IllegalBaseBallArgumentException(errorMsg);
 		}
 	}
@@ -109,10 +108,9 @@ public class BaseBall {
 		for (int i = 0; i < textBaseBall.length(); i++) {
 			numberSet.add(Character.getNumericValue(textBaseBall.charAt(i)));
 		}
-
 		if (numberSet.size() != BaseBallConstants.SIZE) {
 			throw new IllegalBaseBallArgumentException(
-				String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", textBaseBall));
+					String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", textBaseBall));
 		}
 	}
 
@@ -128,10 +126,9 @@ public class BaseBall {
 		int index = 0;
 		while (baseBall[baseBall.length - 1] == 0) {
 			final int pickNumber = Randoms.pickNumberInRange(BaseBallConstants.MIN_NUMBER,
-				BaseBallConstants.MAX_NUMBER);
+					BaseBallConstants.MAX_NUMBER);
 			index = addIfNotContains(baseBall, index, pickNumber);
 		}
-
 		return baseBall;
 	}
 
@@ -149,7 +146,6 @@ public class BaseBall {
 		if (contains(baseBall, pickNumber, index)) {
 			return index;
 		}
-
 		baseBall[index] = pickNumber;
 		return index + 1;
 	}
@@ -180,11 +176,9 @@ public class BaseBall {
 		if (start > end) {
 			return -1;
 		}
-
 		if (baseBall[start] == number) {
 			return start;
 		}
-
 		return containsRecursive(baseBall, number, start + 1, end);
 	}
 

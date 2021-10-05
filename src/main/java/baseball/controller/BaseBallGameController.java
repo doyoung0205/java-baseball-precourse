@@ -4,18 +4,24 @@ import baseball.model.BaseBall;
 import baseball.model.Pitcher;
 import baseball.model.Player;
 import baseball.model.SwingResult;
-import baseball.view.BaseBallGameView;
+import baseball.view.ConsoleInputView;
+import baseball.view.EndView;
+import baseball.view.SwingResultView;
 
 public class BaseBallGameController {
 
     private final Pitcher pitcher;
     private final Player player;
-    private final BaseBallGameView baseBallGameView;
+    private final SwingResultView swingResultView;
+    private final EndView endView;
+    private final ConsoleInputView consoleView;
 
     public BaseBallGameController() {
         this.pitcher = new Pitcher();
         this.player = new Player();
-        this.baseBallGameView = new BaseBallGameView();
+        this.swingResultView = new SwingResultView();
+        this.endView = new EndView();
+        this.consoleView = new ConsoleInputView();
     }
 
     /**
@@ -31,7 +37,7 @@ public class BaseBallGameController {
         swingByBaseBall(baseBall);
 
         // 게임의 끝 인사를 콘솔에 출력합니다.
-        baseBallGameView.printEndMessage();
+        endView.resolve();
     }
 
 
@@ -44,8 +50,12 @@ public class BaseBallGameController {
 
         // 결과가 없거나 결과가 전부 스트라이크가 아닌 경우
         while (swingResult == null || !swingResult.isFullStrike()) {
-            swingResult = player.swingByBaseBall(baseBall);
-            baseBallGameView.printSwingResult(swingResult);
+
+            final String expectedText = consoleView.getExpectedNumberInputValue();
+
+            swingResult = player.swingByBaseBall(baseBall, expectedText);
+
+            swingResultView.resolve(swingResult);
         }
     }
 
@@ -53,11 +63,15 @@ public class BaseBallGameController {
      * 플레이어가 게임을 다시 시작할지 결정합니다.
      */
     public boolean isReply() {
+
+        final String replyOrNotInputValue = consoleView.getReplyOrNotInputValue();
+
         try {
-            return player.isReply();
+            return player.isReply(replyOrNotInputValue);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+
         return isReply();
     }
 }

@@ -1,7 +1,5 @@
 package baseball.model;
 
-import nextstep.utils.Console;
-
 public class Player {
 
     /**
@@ -9,9 +7,9 @@ public class Player {
      *
      * @return 스윙 결과
      */
-    public SwingResult swingByBaseBall(final BaseBall baseBall) {
+    public SwingResult swingByBaseBall(final BaseBall baseBall, final String text) {
 
-        final BaseBall expectedBaseBall = getExpectedBaseBallByConsoleInput();
+        final BaseBall expectedBaseBall = getExpectedBaseBallByExpectedText(text);
 
         return SwingResult.valueOf(baseBall, expectedBaseBall);
     }
@@ -20,18 +18,16 @@ public class Player {
     /**
      * 콘솔로 부터 숫자를 입력받아 게임을 다시 시작할지 결정합니다.
      *
+     * @param isReplyFromConsoleInput 콘솔로 부터 입력받은 재시작 여부를 나타내는 텍스트
      * @return 재시작이면 true 아니면 false
      */
-    public boolean isReply() {
+    public boolean isReply(final String isReplyFromConsoleInput) {
 
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        final String expectedText = Console.readLine();
-
-        if (expectedText.equals("1")) {
+        if (isReplyFromConsoleInput.equals("1")) {
             return true;
         }
 
-        if (expectedText.equals("2")) {
+        if (isReplyFromConsoleInput.equals("2")) {
             return false;
         }
 
@@ -41,10 +37,7 @@ public class Player {
     /**
      * 콘솔로 부터 입력받은 값으로 예상 투구번호를 반환합니다.
      */
-    private BaseBall getExpectedBaseBallByConsoleInput() {
-
-        System.out.print("숫자를 입력해 주세요 : ");
-        final String expectedText = Console.readLine();
+    private BaseBall getExpectedBaseBallByExpectedText(final String expectedText) {
 
         try {
             return BaseBall.valueOf(expectedText);
@@ -52,6 +45,6 @@ public class Player {
             System.out.println(e.getMessage());
         }
 
-        return getExpectedBaseBallByConsoleInput();
+        return getExpectedBaseBallByExpectedText(expectedText);
     }
 }

@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class BaseBall {
 
-    private final static String regex = "^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.SIZE + "}$";
+    private final static String FORMATION_REGEX = "^[" + BaseBallConstants.MIN_NUMBER + "-" + BaseBallConstants.MAX_NUMBER + "]{" + BaseBallConstants.SIZE + "}$";
     private final int[] baseball;
 
     private BaseBall(final int[] baseball) {
@@ -36,7 +36,7 @@ public class BaseBall {
      */
     public static BaseBall valueOf(final String textBaseBall) throws IllegalBaseBallArgumentException {
 
-        validation(textBaseBall);
+        validate(textBaseBall);
 
         final int[] digits = new int[textBaseBall.length()];
 
@@ -58,17 +58,59 @@ public class BaseBall {
     }
 
     /**
+     * 현재 투구번호의 크기를 반환
+     */
+    public int length() {
+        return this.baseball.length;
+    }
+
+    /**
+     * 투구번호에서 <code>i</code> 인덱스의 가지고 있는 값을 반환합니다.
+     */
+    public int getAt(final int i) {
+        return this.baseball[i];
+    }
+
+    @Override
+    public String toString() {
+        return "BaseBall{" +
+                "baseball=" + Arrays.toString(baseball) +
+                '}';
+    }
+
+    /**
      * 1~9 로 구성된 서로 다른 임의의 숫자 3개가 있는지 확인
      *
      * @param textBaseBall 문자열로 이루어진 투구번호
      * @throws IllegalBaseBallArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
      */
-    private static void validation(final String textBaseBall) throws IllegalBaseBallArgumentException {
+    private static void validate(final String textBaseBall) throws IllegalBaseBallArgumentException {
 
-        if (!textBaseBall.matches(regex)) {
+        validateFormation(textBaseBall);
+        validateSize(textBaseBall);
+
+    }
+
+    /**
+     * 1~9 로 구성된 서로 다른 임의의 숫자 3개가 있는지 확인
+     *
+     * @param textBaseBall 문자열로 이루어진 투구번호
+     * @throws IllegalBaseBallArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
+     */
+    private static void validateFormation(final String textBaseBall) throws IllegalBaseBallArgumentException {
+        if (!textBaseBall.matches(FORMATION_REGEX)) {
             final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.SIZE, textBaseBall);
             throw new IllegalBaseBallArgumentException(errorMsg);
         }
+    }
+
+    /**
+     * 1~9 로 구성된 서로 다른 임의의 숫자 3개가 있는지 확인
+     *
+     * @param textBaseBall 문자열로 이루어진 투구번호
+     * @throws IllegalBaseBallArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
+     */
+    private static void validateSize(final String textBaseBall) throws IllegalBaseBallArgumentException {
 
         final Set<Integer> numberSet = new HashSet<>();
 
@@ -79,7 +121,6 @@ public class BaseBall {
         if (numberSet.size() != BaseBallConstants.SIZE) {
             throw new IllegalBaseBallArgumentException(String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", textBaseBall));
         }
-
     }
 
     /**
@@ -158,24 +199,4 @@ public class BaseBall {
         return containsRecursive(baseBall, number, start + 1, end);
     }
 
-    @Override
-    public String toString() {
-        return "BaseBall{" +
-                "baseball=" + Arrays.toString(baseball) +
-                '}';
-    }
-
-    /**
-     * 현재 투구번호의 크기를 반환
-     */
-    public int length() {
-        return this.baseball.length;
-    }
-
-    /**
-     * 투구번호에서 <code>i</code> 인덱스의 가지고 있는 값을 반환합니다.
-     */
-    public int getAt(final int i) {
-        return this.baseball[i];
-    }
 }

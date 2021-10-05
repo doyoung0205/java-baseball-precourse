@@ -4,6 +4,7 @@ import baseball.model.BaseBall;
 import baseball.model.Pitcher;
 import baseball.model.Player;
 import baseball.model.SwingResult;
+import baseball.model.exception.IllegalReplyInputValueException;
 import baseball.view.ConsoleInputView;
 import baseball.view.EndView;
 import baseball.view.SwingResultView;
@@ -71,7 +72,7 @@ public class BaseBallGameController {
 
         try {
             return player.isReply(replyOrNotInputValue);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalReplyInputValueException e) {
             System.out.println(e.getMessage());
         }
 

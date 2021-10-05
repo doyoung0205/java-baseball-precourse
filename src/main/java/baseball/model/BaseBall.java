@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.model.exception.IllegalBaseBallArgumentException;
 import nextstep.utils.Randoms;
 
 import java.util.Arrays;
@@ -33,7 +34,7 @@ public class BaseBall {
      * @return {@link BaseBall}
      * @throws IllegalArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
      */
-    public static BaseBall valueOf(final String s) {
+    public static BaseBall valueOf(final String s) throws IllegalBaseBallArgumentException {
 
         validation(s);
 
@@ -62,11 +63,11 @@ public class BaseBall {
      * @param s 문자열
      * @throws IllegalArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
      */
-    private static void validation(final String s) {
+    private static void validation(final String s) throws IllegalBaseBallArgumentException {
 
         if (!s.matches(regex)) {
             final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.SIZE, s);
-            throw new IllegalArgumentException(errorMsg);
+            throw new IllegalBaseBallArgumentException(errorMsg);
         }
 
         final Set<Integer> numberSet = new HashSet<>();
@@ -74,7 +75,7 @@ public class BaseBall {
             numberSet.add(Character.getNumericValue(s.charAt(i)));
         }
         if (numberSet.size() != BaseBallConstants.SIZE) {
-            throw new IllegalArgumentException(String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", s));
+            throw new IllegalBaseBallArgumentException(String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", s));
         }
 
     }

@@ -1,5 +1,8 @@
 package baseball.model;
 
+import baseball.model.exception.IllegalBaseBallArgumentException;
+import baseball.model.exception.IllegalReplyInputValueException;
+
 public class Player {
 
     /**
@@ -20,8 +23,9 @@ public class Player {
      *
      * @param replyOrNotInputValue 콘솔로 부터 입력받은 재시작 여부를 나타내는 텍스트
      * @return 재시작이면 true 아니면 false
+     * @throws IllegalReplyInputValueException 잘못된 재시작 입력 값일 경우 발생합니다.
      */
-    public boolean isReply(final String replyOrNotInputValue) {
+    public boolean isReply(final String replyOrNotInputValue) throws IllegalReplyInputValueException {
 
         if (GameReplyStatus.isReply(replyOrNotInputValue)) {
             return true;
@@ -31,7 +35,7 @@ public class Player {
             return false;
         }
 
-        throw new IllegalArgumentException("[ERROR] 잘못 입력하셨습니다. 1이나 2를 입력해주세요");
+        throw new IllegalReplyInputValueException("[ERROR] 잘못 입력하셨습니다. 1이나 2를 입력해주세요");
     }
 
 
@@ -52,7 +56,7 @@ public class Player {
 
         try {
             return BaseBall.valueOf(expectedText);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalBaseBallArgumentException e) {
             System.out.println(e.getMessage());
         }
 

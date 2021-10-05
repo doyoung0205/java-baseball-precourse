@@ -30,18 +30,18 @@ public class BaseBall {
     /**
      * 문자열을 변환해 투구번호 생성합니다.
      *
-     * @param s 문자열
+     * @param textBaseBall 문자열로 이루어진 투구번호
      * @return {@link BaseBall}
      * @throws IllegalArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
      */
-    public static BaseBall valueOf(final String s) throws IllegalBaseBallArgumentException {
+    public static BaseBall valueOf(final String textBaseBall) throws IllegalBaseBallArgumentException {
 
-        validation(s);
+        validation(textBaseBall);
 
-        final int[] digits = new int[s.length()];
+        final int[] digits = new int[textBaseBall.length()];
 
-        for (int i = 0; i < s.length(); i++) {
-            digits[i] = Character.getNumericValue(s.charAt(i));
+        for (int i = 0; i < textBaseBall.length(); i++) {
+            digits[i] = Character.getNumericValue(textBaseBall.charAt(i));
         }
 
         return new BaseBall(digits);
@@ -60,22 +60,24 @@ public class BaseBall {
     /**
      * 1~9 로 구성된 서로 다른 임의의 숫자 3개가 있는지 확인
      *
-     * @param s 문자열
-     * @throws IllegalArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
+     * @param textBaseBall 문자열로 이루어진 투구번호
+     * @throws IllegalBaseBallArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
      */
-    private static void validation(final String s) throws IllegalBaseBallArgumentException {
+    private static void validation(final String textBaseBall) throws IllegalBaseBallArgumentException {
 
-        if (!s.matches(regex)) {
-            final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.SIZE, s);
+        if (!textBaseBall.matches(regex)) {
+            final String errorMsg = String.format("[ERROR] %s에서 %s 까지의 수 %s개를 입력해주세요. [%s]", BaseBallConstants.MIN_NUMBER, BaseBallConstants.MAX_NUMBER, BaseBallConstants.SIZE, textBaseBall);
             throw new IllegalBaseBallArgumentException(errorMsg);
         }
 
         final Set<Integer> numberSet = new HashSet<>();
-        for (int i = 0; i < s.length(); i++) {
-            numberSet.add(Character.getNumericValue(s.charAt(i)));
+
+        for (int i = 0; i < textBaseBall.length(); i++) {
+            numberSet.add(Character.getNumericValue(textBaseBall.charAt(i)));
         }
+
         if (numberSet.size() != BaseBallConstants.SIZE) {
-            throw new IllegalBaseBallArgumentException(String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", s));
+            throw new IllegalBaseBallArgumentException(String.format("[ERROR] 서로 다른 임의의 수를 입력해주세요. [%s]", textBaseBall));
         }
 
     }

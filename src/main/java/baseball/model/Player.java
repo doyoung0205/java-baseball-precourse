@@ -42,7 +42,18 @@ public class Player {
      * @return 재시작이면 true 아니면 false
      */
     public static boolean isReply() {
-        return false;
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+        final String expectedText = Console.readLine();
+        if (expectedText.equals("1")) {
+            return true;
+        }
+
+        if (expectedText.equals("2")) {
+            return false;
+        }
+
+        throw new IllegalArgumentException("[ERROR] 잘못 입력하셨습니다. 1이나 2를 입력해주세요");
     }
 
     /**

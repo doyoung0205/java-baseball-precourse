@@ -34,6 +34,16 @@ public class Player {
         throw new IllegalArgumentException("[ERROR] 잘못 입력하셨습니다. 1이나 2를 입력해주세요");
     }
 
+
+    /**
+     * 스윙을 할 수 있다면 True 없다면 False 를 반환합니다.
+     * @param swingResult 스윙 결과
+     * @return 스윙결과가 모두 스트라이크가 아니거나 스윙결과가 없으면 True 를 반환 아니면 False 반환
+     */
+    public boolean isSwingAble(final SwingResult swingResult) {
+        return swingResult == null || !swingResult.isFullStrike();
+    }
+
     /**
      * 콘솔로 부터 입력받은 값으로 예상 투구번호를 반환합니다.
      */

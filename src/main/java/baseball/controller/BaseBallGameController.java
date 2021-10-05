@@ -48,8 +48,8 @@ public class BaseBallGameController {
 
         SwingResult swingResult = null;
 
-        // 스윙을 할 수 있을 때 까지 스윙
-        while (isSwingAble(swingResult)) {
+        // 플레이어가 스윙을 할 수 있는지 확인 후 할 수 있을 때 까지 스윙
+        while (player.isSwingAble(swingResult)) {
 
             final String expectedText = consoleView.getExpectedNumberInputValue();
 
@@ -76,13 +76,5 @@ public class BaseBallGameController {
     }
 
 
-    /**
-     * 스윙을 할 수 있다면 True 없다면 False 를 반환합니다.
-     * @param swingResult 스윙 결과
-     * @return 스윙결과가 모두 스트라이크가 아니거나 스윙결과가 없으면 True 를 반환 아니면 False 반환
-     */
-    private boolean isSwingAble(final SwingResult swingResult) {
-        return swingResult == null || !swingResult.isFullStrike();
-    }
 
 }

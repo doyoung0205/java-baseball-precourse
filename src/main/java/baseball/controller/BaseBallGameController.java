@@ -67,6 +67,7 @@ public class BaseBallGameController {
 
 	/**
 	 * 콘솔로 부터 예상 번호를 입력받아 플페이어가 스윙을 하여 결과를 조회합니다.
+	 * 만약 콘솔에 잘못 입력할 경우 재귀적으로 다시 콘솔로 부터 예상 번호를 받도록 합니다.
 	 *
 	 * @param baseBall 투구번호
 	 * @return 스윙 결과를 반환합니다.

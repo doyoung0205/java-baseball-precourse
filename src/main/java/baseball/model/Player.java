@@ -12,7 +12,7 @@ public class Player {
 	 */
 	public SwingResult swingByBaseBallAndExpectedText(final BaseBall baseBall, final String expectedText) throws
 		IllegalBaseBallArgumentException {
-		final BaseBall expectedBaseBall = getExpectedBaseBallByExpectedText(expectedText);
+		final BaseBall expectedBaseBall = BaseBall.valueOf(expectedText);
 		return SwingResult.valueOf(baseBall, expectedBaseBall);
 	}
 
@@ -41,13 +41,5 @@ public class Player {
 	 */
 	public boolean isSwingAble(final SwingResult swingResult) {
 		return swingResult == null || !swingResult.isFullStrike();
-	}
-
-	/**
-	 * 콘솔로 부터 입력받은 값으로 예상 투구번호를 반환합니다.
-	 */
-	private BaseBall getExpectedBaseBallByExpectedText(final String expectedText) throws
-		IllegalBaseBallArgumentException {
-		return BaseBall.valueOf(expectedText);
 	}
 }

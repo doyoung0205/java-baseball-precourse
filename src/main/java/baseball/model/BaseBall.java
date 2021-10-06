@@ -1,11 +1,11 @@
 package baseball.model;
 
+import baseball.model.exception.IllegalBaseBallArgumentException;
+import nextstep.utils.Randoms;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-import baseball.model.exception.IllegalBaseBallArgumentException;
-import nextstep.utils.Randoms;
 
 public class BaseBall {
 
@@ -81,7 +81,7 @@ public class BaseBall {
 	 */
 	private static void validate(final String textBaseBall) throws IllegalBaseBallArgumentException {
 		validateFormation(textBaseBall);
-		validateSize(textBaseBall);
+		validateDuplicatedSize(textBaseBall);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class BaseBall {
 	 * @param textBaseBall 문자열로 이루어진 투구번호
 	 * @throws IllegalBaseBallArgumentException 문자열이 1~9까지의 임의의수 3개가 아닐경우 발생합니다.
 	 */
-	private static void validateSize(final String textBaseBall) throws IllegalBaseBallArgumentException {
+	private static void validateDuplicatedSize(final String textBaseBall) throws IllegalBaseBallArgumentException {
 		final Set<Integer> numberSet = new HashSet<>();
 		for (int i = 0; i < textBaseBall.length(); i++) {
 			numberSet.add(Character.getNumericValue(textBaseBall.charAt(i)));

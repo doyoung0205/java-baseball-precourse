@@ -1,11 +1,11 @@
 package baseball.model;
 
-import baseball.model.exception.IllegalBaseBallArgumentException;
-import nextstep.utils.Randoms;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import baseball.model.exception.IllegalBaseBallArgumentException;
+import nextstep.utils.Randoms;
 
 public class BaseBall {
 

@@ -30,7 +30,7 @@ public class Player {
 		if (GameReplyStatus.isNotReply(replyOrNotInputValue)) {
 			return false;
 		}
-		throw new IllegalReplyInputValueException("[ERROR] 잘못 입력하셨습니다. 1이나 2를 입력해주세요");
+		throw new IllegalReplyInputValueException("[ERROR] 잘못 입력하셨습니다. 1이나 2를 입력해주세요.");
 	}
 
 	/**

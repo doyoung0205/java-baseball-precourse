@@ -30,9 +30,10 @@ public class BaseBallGameController {
 	 * 숫자 야구 게임을 시작합니다.
 	 */
 	public void play() {
+		// 투수가 투구번호 골라 던집니다.
 		final BaseBall baseBall = pitcher.pickBaseBall();
-		System.out.println("투구 번호 :: " + baseBall);
-		//  플레이어가 투수가 던진 투구를 스윙 합니다.
+		// System.out.println("투구 번호 :: " + baseBall);
+		// 투수가 던진 투구를 스윙 합니다.
 		swingByBaseBall(baseBall);
 		// 게임의 끝 인사를 콘솔에 출력합니다.
 		endView.resolve();

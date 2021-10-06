@@ -6,9 +6,12 @@ import baseball.model.exception.IllegalReplyInputValueException;
 public class Player {
 
 	/**
-	 * 텍스트를 예상 투구번호로 변환하여 투수의 베이스볼과 비교하여 스윙 결과를 반환합니다.
+	 * 텍스트를 예상 투구번호로부터 투수의 투구번호와 비교하여 스윙 결과를 반환합니다.
 	 *
+	 * @param baseBall 투구번호
+	 * @param expectedText 예상 투구번호 문자열
 	 * @return 스윙 결과
+	 * @throws IllegalBaseBallArgumentException 잘못된 예상 투구번호 문자열을 입력한 경우 발생합니다.
 	 */
 	public SwingResult swingByBaseBallAndExpectedText(final BaseBall baseBall, final String expectedText) throws
 		IllegalBaseBallArgumentException {

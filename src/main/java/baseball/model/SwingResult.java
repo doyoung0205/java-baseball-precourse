@@ -16,7 +16,7 @@ public class SwingResult {
 	 * @param baseBall         투구번호
 	 * @param expectedBaseBall 예상투구번호
 	 * @return {@link SwingResult}
-	 * @throws IllegalArgumentException Null 인 경우 발생합니다.
+	 * @throws IllegalArgumentException 투구번호나 예상투구번호가 Null 인 경우 발생합니다.
 	 */
 	public static SwingResult valueOf(final BaseBall baseBall, final BaseBall expectedBaseBall) {
 		validate(baseBall, expectedBaseBall);
@@ -31,7 +31,7 @@ public class SwingResult {
 	}
 
 	/**
-	 * 전부 스트라이크 이면 True 를 반환합니다.
+	 * 투구번호의 크기 만큼 전부 스트라이크 이면 True 를 반환합니다.
 	 */
 	public boolean isFullStrike() {
 		return this.strikeCount == BaseBallConstants.SIZE;
